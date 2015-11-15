@@ -1,0 +1,27 @@
+{
+  "name": "learning-react",
+  "version": "0.0.0",
+  "description": "only for learn react js",
+  "main": "./build/build.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/highmax/learning-react.git"
+  },
+  "author": "Alejandro Navarro",
+  "license": "MIT",
+  "dependencies": {
+    "react": "0.14.2"
+  },
+  "devDependencies": {
+    "jsx-loader": "*",
+    "react-dom": "^0.14.2",
+    "webpack": "^1.9.10"
+  },
+  "bugs": {
+    "url": "https://github.com/highmax/learning-react/issues"
+  },
+  "homepage": "https://github.com/highmax/learning-react"
+}
