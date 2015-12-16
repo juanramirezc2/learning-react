@@ -2,9 +2,9 @@
   "name": "learning-react",
   "version": "0.0.0",
   "description": "only for learn react js",
-  "main": "./build/build.js",
+  "main": "./build/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -13,11 +13,14 @@
   "author": "Alejandro Navarro",
   "license": "MIT",
   "dependencies": {
-    "react": "0.14.2"
+    "react": "^0.14.3"
   },
   "devDependencies": {
-    "jsx-loader": "*",
-    "react-dom": "^0.14.2",
+    "babel-core": "^6.3.17",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "react-dom": "^0.14.3",
     "webpack": "^1.9.10"
   },
   "bugs": {
