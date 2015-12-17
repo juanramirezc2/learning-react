@@ -15,6 +15,8 @@
 // 		}
 // }
 
+var path    = require('path'),
+    webpack = require('webpack');
 
 module.exports = {
   entry: './src/js/app.js',
@@ -26,15 +28,15 @@ module.exports = {
     inline: true,
     port: 3333
   },
+  plugins:[
+    new webpack.HotModuleReplacementPlugin()
+  ],
   module: {
     loaders: [
       {
         test:/\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel',
-        query: {
-          presets: ['es2015', 'react']
-        }
+        loaders: ['react-hot','babel'],
+        include : path.join(__dirname,'src') 
       }
     ]
   }
