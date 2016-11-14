@@ -1,14 +1,12 @@
 import React from 'react';
 
-class Component extends React.Component {
-
-  render() {
-    return <div>
-      <h1> Hello  {this.props.name} ! </h1>
-    </div>
-  }
+var App = ({listItems,})=>{
+  <Index/>
+  <MonthQuote/>
+  <WeeklyTask/>
+  <RapidLogin/>
+  <FutureLog/>
 }
-
 //Default Props
 Component.defaultProps = {
   name: "Dude"

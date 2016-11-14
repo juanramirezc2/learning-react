@@ -4,7 +4,7 @@
   "description": "only for learn react js",
   "main": "./build/index.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -12,18 +12,24 @@
   },
   "author": "Alejandro Navarro",
   "license": "MIT",
-  "dependencies": {
-    "react": "^0.14.3"
-  },
   "devDependencies": {
-    "babel-core": "^6.3.17",
-    "babel-loader": "^6.2.0",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13",
-    "babel-preset-stage-0": "^6.3.13",
-    "react-dom": "^0.14.3",
+    "babel-core": "^6.0.20",
+    "babel-eslint": "^4.1.3",
+    "babel-loader": "^6.0.1",
+    "babel-preset-es2015": "^6.0.15",
+    "babel-preset-react": "^6.0.15",
+    "babel-preset-stage-0": "^6.0.15",
+    "eslint": "^1.10.3",
+    "eslint-plugin-react": "^3.6.2",
     "react-hot-loader": "^1.3.0",
-    "webpack": "^1.9.10"
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.1"
+  },
+  "dependencies": {
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6",
+    "react-redux-provide": "^7.0.0-rc.12",
+    "redux": "^3.6.0"
   },
   "bugs": {
     "url": "https://github.com/highmax/learning-react/issues"
