@@ -6,7 +6,6 @@ var App = ()=>(
     <RapidLogin ElementId="1" />
     <RapidLogin ElementId="2" />
     <QueryComponent />
-    <QueryComponent />
   </div>
 )
 

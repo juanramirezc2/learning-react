@@ -7,13 +7,13 @@ const Rapid = ({numberWithChars, plusOne,lessOne}) => (
   {numberWithChars}
   </div>
   <a href="#" onClick = {(e)=>{
-    plusOne(1)
-    return false
-  }}>pluss one</a>
-  <a href="#" onClick = {(e)=>{
     lessOne(1)
     return false
-  }}>less one</a>
+  }}>-</a><br/>
+  <a href="#" onClick = {(e)=>{
+    plusOne(1)
+    return false
+  }}>+</a>
   <form className="RapidLoginForm">
     <label htmlFor="rapidLogin" >new task </label>
     <input id="rapidLogin" type='text'/>

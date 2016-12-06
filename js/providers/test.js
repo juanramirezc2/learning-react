@@ -10,7 +10,7 @@ const merge = {
   }
 }
 const onReady = () =>{
-
+ console.log(`the provider is ready`)
 }
 const reducers ={
   actualResult(state = 0, {type,number}){
@@ -22,6 +22,12 @@ const reducers ={
       default:
         return state 
     }
+  },
+  someOtherReducer(state=[],{type,newState}){
+    switch(type){
+      default:
+        return state
+    }
   }
 }
 const actions = {
@@ -29,7 +35,7 @@ const actions = {
   lessOne: (number) =>({type:LESS,number}) 
 }
 const replication = { 
-  reducerKeys:false
+  reducerKeys:true
 }
 export default {
   key,

@@ -1,23 +1,25 @@
 import React  from 'react'
-const QueryComponent = React.createClass({
-  getDefaultProps(){
-    return { query:{actualResult:5} }
-  },
-  render(){
-    const {result} = this.props
-    console.log("update not sure",result)
-    if(result == null){
-      return (<div>loading</div>)
-    }
-    else{
-      return (<div>this is the result
-                  {result.map((o)=>(<div>{o.result}</div>))}
-                  </div>)
-    }
-   
+
+const QueryComponent = ({result})=>{
+  if(result === null){
+    return (<div>loading...</div>)
   }
-})
+  else if(result){
+    return (<div>this is the result
+            {result.map((o)=>(<div>{o.result}</div>))}
+            </div>)
+  }
+  else{
+    return (<div>error</div>)
+  }
+}
+
+QueryComponent.defaultProps = {
+  query:{actualResult:5}
+}
+
 QueryComponent.propTypes = {
+  query: React.PropTypes.any,
   result :React.PropTypes.any
 }
 
