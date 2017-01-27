@@ -1,6 +1,5 @@
 import install from 'react-redux-provide/lib/install'
 import React from 'react'
-React.createElement = install
 import {pushReplicator} from 'react-redux-provide'
 import ReactDOM  from 'react-dom';
 import Providers from './providers'

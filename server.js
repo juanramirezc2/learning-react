@@ -1,16 +1,3 @@
-/*var express = require('express'),
-app = express();
-
-app.use(express.static('public'))
-app.listen(3000,(e)=>{
-  if(e){
-    console.error(e)
-  }
-  else{
-    console.log('listenning on port 3000',e)
-  }
-}) */
-
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config');
@@ -24,5 +11,5 @@ new WebpackDevServer(webpack(config), {
     return console.log(err);
   }
 
-  console.log('Listening at http://localhost:3000/');
+  console.log('Listening at http://localhost:3002/');
 });
