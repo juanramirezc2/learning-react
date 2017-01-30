@@ -9,8 +9,9 @@ const merge = {
     }
   }
 }
-const onReady = () =>{
- console.log(`the provider is ready`)
+const onReady = (sth) =>{
+ console.log(`the provider is ready`,sth)
+ console.log(sth.store.getState())
 }
 const reducers ={
   actualResult(state = 0, {type,number}){
