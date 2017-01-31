@@ -1,3 +1,6 @@
 .app {
   box-sizing: border-box;
 }
+.task {
+  border: solid 1px black;
+}
