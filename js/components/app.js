@@ -7,7 +7,8 @@ var App = () => (
     <RapidLogin ElementId="1" />
     <RapidLogin ElementId="2" />
     <QueryComponent />
-    <Task title="test"/>
+    <Task title="test" type="task" state={{complete: true}}/>
+    <Task title="test2 no complete" type="task" state={{complete: false}}/>
   </div>
 );
 

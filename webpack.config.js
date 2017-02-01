@@ -29,7 +29,8 @@ module.exports = {
                   importLoaders: 1,
                   sourceMap: true
                 }
-              }]
+              },
+              "postcss-loader"]
       }
     ]
   }

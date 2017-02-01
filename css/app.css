@@ -3,4 +3,15 @@
 }
 .task {
   border: solid 1px black;
+  display: flex;
+  text-decoration: none;
+  &__type {
+    margin: 0 10px;
+  }
+  &__title {
+
+  }
+  &_complete {
+    text-decoration: line-through;
+  }
 }
