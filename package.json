@@ -5,7 +5,7 @@
   "main": "./build/index.js",
   "scripts": {
     "start": "webpack-dev-server --open"
-    },
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/highmax/learning-react.git"
@@ -34,6 +34,7 @@
     "classnames": "^2.2.5",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
+    "react-redux": "^5.0.2",
     "redux": "^3.6.0"
   },
   "bugs": {
