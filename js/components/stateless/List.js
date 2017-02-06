@@ -1,13 +1,9 @@
 import React from "react";
 import Task from "./Task";
-var List = ({ tasks, completeTask }) => (
+var List = ({ tasks, taskCallback }) => (
   <div>
     {tasks.map(task => (
-      <Task
-        title={task.title}
-        type={task.type}
-        state={task.state}
-      />
+      <Task title={task.title} type={task.type} state={task.state} />
     ))}
   </div>
 );
@@ -15,7 +11,6 @@ var List = ({ tasks, completeTask }) => (
 List.defaultProps = { tasks: [] };
 
 //Props Types
-List.propTypes = { tasks: React.PropTypes.array
-  };
+List.propTypes = { tasks: React.PropTypes.array };
 
 export default List;
