@@ -1,12 +1,11 @@
 import { PropTypes } from "react";
 import React from "react";
-import app from "../../css/app.css";
+import app from "../../../css/app.css";
 import classNames from "classnames";
 const TaskType = {
   event :"🔘",
   task  :"➖"
 }
-console.log(app.task_complete)
 const task = ({ title, type, state }) => (
   <a href="#" className={classNames(app.task,{[app.task_complete]:state.complete})}>
     <div className={app.task__type}>
