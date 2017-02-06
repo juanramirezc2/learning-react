@@ -4,8 +4,6 @@ var webpack = require("webpack");
 module.exports = {
   devtool: "eval-source-map",
   entry: [
-    "webpack-dev-server/client?http://localhost:3002",
-    "webpack/hot/only-dev-server",
     "./js/index"
   ],
   output: {
@@ -33,5 +31,9 @@ module.exports = {
               "postcss-loader"]
       }
     ]
-  }
+  },
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    port: 9000
+}
 };

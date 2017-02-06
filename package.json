@@ -4,7 +4,7 @@
   "description": "only for learn react js",
   "main": "./build/index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "webpack-dev-server --open",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
