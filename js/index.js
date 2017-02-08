@@ -6,10 +6,7 @@ import { Provider } from "react-redux";
 import { ADD } from "./actions";
 
 const initialState = {
-  tasks: [
-    { title: "test1", taskType: "task", state: { complete: true } },
-    { title: "test2", taskType: "event", state: { complete: false } }
-  ]
+  tasks: []
 };
 
 let store = createStore((state = initialState, action) => {
