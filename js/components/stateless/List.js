@@ -2,8 +2,8 @@ import React from "react";
 import Task from "./Task";
 var List = ({ tasks, taskCallback }) => (
   <div>
-    {tasks.map(task => (
-      <Task title={task.title} type={task.type} state={task.state} />
+    {tasks.map((task,i) => (
+      <Task key={i} title={task.title} type={task.taskType} state={task.state} />
     ))}
   </div>
 );

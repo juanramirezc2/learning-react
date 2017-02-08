@@ -3,11 +3,14 @@ import React from "react";
 import app from "../../../css/app.css";
 import classNames from "classnames";
 const TaskType = {
-  event :"🔘",
-  task  :"➖"
-}
+  event: "🔘",
+  task: "➖"
+};
 const task = ({ title, type, state }) => (
-  <a href="#" className={classNames(app.task,{[app.task_complete]:state.complete})}>
+  <a
+    href="#"
+    className={classNames(app.task, { [app.task_complete]: state.complete })}
+  >
     <div className={app.task__type}>
       {TaskType[type]}
     </div>
@@ -18,3 +21,4 @@ const task = ({ title, type, state }) => (
 );
 
 export default task;
+

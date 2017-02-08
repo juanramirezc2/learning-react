@@ -1,38 +1,41 @@
 var path = require("path");
-var webpack = require("webpack");
 
 module.exports = {
-  devtool: "eval-source-map",
-  entry: [
-    "./js/index"
-  ],
+  entry: ["./js/index"],
   output: {
     path: path.join(__dirname, "dist"),
     filename: "bundle.js"
   },
-  plugins: [ new webpack.HotModuleReplacementPlugin() ],
   module: {
-    rules : [
-      { 
-        test:/\.js$/, 
-        use: [ "react-hot-loader", "babel-loader" ],
-        include: [ path.join(__dirname, "js"),path.join(__dirname,"node_modules/react-redux-provide")] },
+    rules: [
+      {
+        test: /\.js$/,
+        use: ["react-hot-loader", "babel-loader"],
+        include: [
+          path.join(__dirname, "js"),
+          path.join(__dirname, "node_modules/react-redux-provide")
+        ]
+      },
       {
         test: /\.css$/,
-        use: [ "style-loader",
-               { loader: "css-loader",
-                 options: {
-                  modules: true,
-                  importLoaders: 1,
-                  sourceMap: true
-                }
-              },
-              "postcss-loader"]
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+              importLoaders: 1,
+              sourceMap: true
+            }
+          },
+          "postcss-loader"
+        ]
       }
     ]
   },
   devServer: {
     contentBase: path.join(__dirname, "dist"),
-    port: 9000
-}
+    port: 9000,
+    inline: true
+  }
 };
