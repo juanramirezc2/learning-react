@@ -5,7 +5,6 @@ import Button from "./Button";
 class Head extends React.Component {
   constructor(props) {
     super(props);
-    this.taskName = "";
   }
   handleChange(event) {
     this.taskName = event.target.value;
@@ -14,8 +13,8 @@ class Head extends React.Component {
     const { addCallback, selectCallback } = this.props;
     return (
       <div>
-        <TextField onchange={(e)=>{this.handleChange(e)}} />
-        <Button text="add" callback={(e)=>{addCallback(this.taskName)}} />
+        <TextField refCallback={(el)=>{this.taskName = el}}  />
+        <Button text="add" callback={(e)=>{addCallback(this.taskName.value)}} />
         <Button text="select" callback={selectCallback} />
       </div>
     );

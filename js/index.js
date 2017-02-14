@@ -5,10 +5,22 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { ADD } from "./actions";
 
+// SERVICE WORKER NOT WEB WORKER
 const initialState = {
   tasks: []
 };
 
+fetch('test.json',function(response){
+  console.log('we have a response')
+  var reader = response.body.getReader();
+  return reader.read().then(function(result) {
+    return result
+   })
+})
+.then((sth)=>console.log(sth))
+.catch(function(err) {
+  console.log(err.message);
+});
 let store = createStore((state = initialState, action) => {
   switch (action.type) {
     case ADD:
