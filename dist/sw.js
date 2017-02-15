@@ -1,16 +1,15 @@
-var CACHE_NAME = 'my-site-cache-v1';
+var cache_name = 'my-site-cache-v2';
 var urlsToCache = [
   '/',
-  'index.html',
-  'bundle.js',
-  'test.json'
+  'bundle.js'
 ];
 console.log('[ServiceWorker] Activate');
 
 self.addEventListener('install', function(event) {
+  console.log('install event')
   // Perform install steps
   event.waitUntil(
-    caches.open(CACHE_NAME)
+    caches.open(cache_name)
       .then(function(cache) {
         console.log('Opened cache');
         return cache.addAll(urlsToCache);
@@ -18,10 +17,9 @@ self.addEventListener('install', function(event) {
   );
 });
 
-
+let urlsFetched = []
 self.addEventListener('fetch', function(event) {
-  console.log('[ServiceWorker] Fetch', event.request);
-  console.log('test')
+  urlsFetched.push(event.request)
   event.respondWith(
     caches.match(event.request)
       .then(function(response) {
@@ -34,3 +32,16 @@ self.addEventListener('fetch', function(event) {
     )
   );
 });
+
+self.addEventListener('activate', function(event){
+  console.log('activate triggered','SW starts up')
+  event.waitUntil(
+    caches.keys().then((keyList)=>{
+      Promise.all(keyList.map((key)=>{
+        if (key !== cache_name){
+          console.log('deleting old cache');
+          return caches.delete(key)
+        }
+      }))
+    }))
+})

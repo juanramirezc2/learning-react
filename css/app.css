@@ -1,6 +1,11 @@
 .app {
   box-sizing: border-box;
 }
+:global{
+  body{
+    margin:0;
+  }
+}
 .task {
   border: solid 1px black;
   display: flex;
@@ -14,4 +19,10 @@
   &_complete {
     text-decoration: line-through;
   }
+}
+.head{
+  background-color: gray;
+  display: flex;
+  justify-content: space-around;
+  padding: 5px 10px;
 }
