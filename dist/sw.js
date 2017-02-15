@@ -1,4 +1,4 @@
-var cache_name = 'my-site-cache-v2';
+var cache_name = 'my-site-cache-v3';
 var urlsToCache = [
   '/',
   'bundle.js'
