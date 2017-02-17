@@ -1,9 +1,8 @@
-var cache_name = 'my-site-cache-v3';
+var cache_name = 'my-site-cache-v9';
 var urlsToCache = [
-  '/',
-  'bundle.js'
+  '/'
 ];
-console.log('[ServiceWorker] Activate');
+
 
 self.addEventListener('install', function(event) {
   console.log('install event')
