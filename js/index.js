@@ -4,7 +4,7 @@ import App from "./components/app";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./reducers"
-import {onerror,getInitialState ,onupgradeneeded } from "./db"
+import {onerror,onsuccess,onupgradeneeded} from "./db"
 
 // SERVICE WORKER NOT WEB WORKER
 
@@ -12,13 +12,9 @@ import {onerror,getInitialState ,onupgradeneeded } from "./db"
 let store = createStore(reducer);
 
 //Indexed Db Stuff 
-var request = window.indexedDB.open("reduxStore",11)
+var request = window.indexedDB.open("reduxStore",12)
 request.onerror = onerror
-request.onsuccess = function (event){
-  let db = event.target.result;
-  // Store values in the newly created objectStore.
-  getInitialState(db,store)
-} 
+request.onsuccess = onsuccess(store)
 request.onupgradeneeded = onupgradeneeded
 ReactDOM.render(
   <Provider store={store}>

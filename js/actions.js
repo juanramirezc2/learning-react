@@ -10,8 +10,8 @@ export const SETINITIAL = 'setInitial';
 * action creators
 */
 
-export function addTask(title){
-  return { type : ADD, taskType:"task",title ,state: {complete:false}}
+export function addTask(newTask){
+  return { type : ADD, ...newTask}
 }
 
 export function selectTask(text){
