@@ -44,7 +44,12 @@ function getInitialState(store) {
 function onupgradeneeded(event) {
   let objectStoreNames = ["toDoList"]
   var db = event.target.result
-  objectStoreNames.map((name) => db.deleteObjectStore(name))
+  try {
+    objectStoreNames.map((name) => db.deleteObjectStore(name))
+  }
+  catch(e){
+    console.log(e)
+  }
   var objectStore = db.createObjectStore("toDoList", { keyPath: "taskId" });
 
   // define what data items the objectStore will contain
