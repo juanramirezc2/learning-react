@@ -5,9 +5,8 @@ import {insertTask} from '../../db'
 
 const mapDispatchToProps = (dispatch)=>({
   addCallback: (title)=> {
-    let newTask = { taskId: "2", title, taskType: "task", state: "uncomplete", notified: "false"}
+    let newTask = { taskId: Math.random() , title, taskType: "task", state: "uncomplete", notified: "false"}
     insertTask(newTask).onsuccess = (e)=>{
-      console.log(dispatch)
       dispatch(addTask(newTask))
     }
   },
