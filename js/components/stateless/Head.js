@@ -11,11 +11,16 @@ class Head extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     this.props.addCallback(this.taskName.value);
+    this.form.reset();
   }
   render() {
     const { selectCallback } = this.props;
     return (
-      <form onSubmit={this.onSubmit.bind(this)} className={app.head}>
+      <form
+        onSubmit={this.onSubmit.bind(this)}
+        ref={el => this.form = el}
+        className={app.head}
+      >
         <TextField
           sth={app.head__textField}
           refCallback={el => {

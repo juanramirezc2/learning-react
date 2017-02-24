@@ -1,9 +1,8 @@
-import { ADD, SETINITIAL } from "./actions"; 
+import { ADD, SETINITIAL } from "./actions";
 const initialState = {
   tasks: []
 };
 export default (state = initialState, action) => {
-  console.log(action)
   switch (action.type) {
     case ADD:
       return {
@@ -18,9 +17,9 @@ export default (state = initialState, action) => {
       };
 
     case SETINITIAL:
-      return action.state
+      return action.state;
 
     default:
       return state;
   }
-}
+};
