@@ -1,5 +1,7 @@
 import React, { PropType } from "react";
 
-const TextField= ({refCallback})=><input ref={refCallback} type="text"/>
+const TextField = ({ refCallback, sth }) => (
+  <input className={sth} ref={refCallback} type="text" />
+);
 
-export default TextField
+export default TextField;

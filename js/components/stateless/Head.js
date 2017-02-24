@@ -1,22 +1,28 @@
 import React, { PropType } from "react";
 import TextField from "./TextField";
 import Button from "./Button";
-import app from "../../../css/app.css"
+import app from "../../../css/app.css";
+import classNames from "classnames";
 
 class Head extends React.Component {
   constructor(props) {
     super(props);
   }
   onSubmit(e) {
-    e.preventDefault()
-    this.props.addCallback(this.taskName.value)
+    e.preventDefault();
+    this.props.addCallback(this.taskName.value);
   }
   render() {
     const { selectCallback } = this.props;
     return (
-      <form onSubmit={this.onSubmit.bind(this)}  className={app.head}>
-        <TextField refCallback={(el)=>{this.taskName = el}}  />
-        <input type="submit" value="add"/>
+      <form onSubmit={this.onSubmit.bind(this)} className={app.head}>
+        <TextField
+          sth={app.head__textField}
+          refCallback={el => {
+            this.taskName = el;
+          }}
+        />
+        <input type="submit" value="add" />
         <Button text="select" callback={selectCallback} />
       </form>
     );

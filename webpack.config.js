@@ -25,7 +25,7 @@ module.exports = {
             options: {
               modules: true,
               importLoaders: 1,
-              sourceMap: true
+              sourceMap: false
             }
           },
           "postcss-loader"

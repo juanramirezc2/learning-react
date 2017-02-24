@@ -26,4 +26,7 @@
   justify-content: space-around;
   padding: 5px 10px;
   height: 40px;
+  &__textField{
+    font-size: 20px;
+  }
 }
