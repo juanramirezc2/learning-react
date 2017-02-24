@@ -6,10 +6,11 @@ const TaskType = {
   event: "🔘",
   task: "➖"
 };
-const task = ({ title, type, state }) => (
+const task = ({ title, type, state, completeTask }) => (
   <a
     href="#"
     className={classNames(app.task, { [app.task_complete]: state.complete })}
+    onClick={completeTask}
   >
     <div className={app.task__type}>
       {TaskType[type]}
@@ -21,4 +22,3 @@ const task = ({ title, type, state }) => (
 );
 
 export default task;
-

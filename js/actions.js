@@ -1,4 +1,4 @@
-import { insertTask, updateTask } from "./db";
+import { insertTask, deleteTask } from "./db";
 
 /*
 * action type
@@ -12,11 +12,11 @@ export const SETINITIAL = "setInitial";
 * action creators
 */
 
-export function addTask(newTask) {
+export function addTask(taskData) {
   return function(dispatch) {
     let newTask = {
       taskId: Math.random(),
-      ...newTask
+      ...taskData
     };
     insertTask(newTask).onsuccess = e => {
       dispatch({ type: ADD, ...newTask });

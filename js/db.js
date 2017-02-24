@@ -3,27 +3,16 @@ import { setInitialState } from "./actions";
 let db;
 
 function insertTask(Task) {
-  // This is what our customer data looks like.
-  const todoData = [
-    {
-      taskId: "444-44-4444",
-      title: "do something",
-      type: "task",
-      state: "uncomplete",
-      notified: "true"
-    },
-    {
-      taskId: "555-55-5555",
-      title: "go somewhere",
-      type: "event",
-      state: "uncomplete",
-      notified: "false"
-    }
-  ];
   var toDoListObjectStore = db
     .transaction(["toDoList"], "readwrite")
     .objectStore("toDoList");
   return toDoListObjectStore.add(Task);
+}
+function deleteTask(Task) {
+  let transaction = db.transaction(["toDoList"]);
+  let toDoListObjectStore = transaction.objectStore("toDoList");
+  let dbItem = toDoListObjectStore.delete(Task.taskId);
+  return transaction;
 }
 
 function onsuccess(store) {
