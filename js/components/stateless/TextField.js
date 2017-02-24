@@ -1,5 +1,5 @@
 import React, { PropType } from "react";
 
-const TextField= ({onchange,refCallback})=><input ref={refCallback} type="text" onChange={onchange}/>
+const TextField= ({refCallback})=><input ref={refCallback} type="text"/>
 
 export default TextField

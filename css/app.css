@@ -25,4 +25,5 @@
   display: flex;
   justify-content: space-around;
   padding: 5px 10px;
+  height: 40px;
 }
