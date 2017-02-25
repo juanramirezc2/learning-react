@@ -6,11 +6,11 @@ const TaskType = {
   event: "🔘",
   task: "➖"
 };
-const task = ({ title, type, state, completeTask }) => (
+const task = ({ taskId, title, type, state, deleteTask }) => (
   <a
     href="#"
     className={classNames(app.task, { [app.task_complete]: state.complete })}
-    onClick={completeTask}
+    onClick={deleteTask(taskId)}
   >
     <div className={app.task__type}>
       {TaskType[type]}

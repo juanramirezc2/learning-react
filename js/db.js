@@ -8,11 +8,12 @@ function insertTask(Task) {
     .objectStore("toDoList");
   return toDoListObjectStore.add(Task);
 }
-function deleteTask(Task) {
-  let transaction = db.transaction(["toDoList"]);
+
+function deleteTask(taskId) {
+  let transaction = db.transaction(["toDoList"], "readwrite");
   let toDoListObjectStore = transaction.objectStore("toDoList");
-  let dbItem = toDoListObjectStore.delete(Task.taskId);
-  return transaction;
+  let dbItem = toDoListObjectStore.delete(taskId);
+  return dbItem;
 }
 
 function onsuccess(store) {
@@ -58,4 +59,11 @@ function onupgradeneeded(event) {
   objectStore.createIndex("stateTodo", "state", { unique: false });
   objectStore.createIndex("notifiedTodo", "notified", { unique: false });
 }
-export { onupgradeneeded, onsuccess, getInitialState, onerror, insertTask };
+export {
+  deleteTask,
+  onupgradeneeded,
+  onsuccess,
+  getInitialState,
+  onerror,
+  insertTask
+};

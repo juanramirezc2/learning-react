@@ -7,19 +7,26 @@ import { insertTask, deleteTask } from "./db";
 export const ADD = "add";
 export const SELECT = "select";
 export const SETINITIAL = "setInitial";
+export const DELETE = "delete";
 
 /*
 * action creators
 */
 
 export function addTask(taskData) {
-  return function(dispatch) {
+  return dispatch => {
     let newTask = {
       taskId: Math.random(),
       ...taskData
     };
-    insertTask(newTask).onsuccess = e => {
-      dispatch({ type: ADD, ...newTask });
+    insertTask(newTask).onsuccess = e => dispatch({ type: ADD, ...newTask });
+  };
+}
+
+export function deleteTaskAction(taskId) {
+  return dispatch => {
+    deleteTask(taskId).onsuccess = e => {
+      dispatch({ type: DELETE, taskId });
     };
   };
 }
