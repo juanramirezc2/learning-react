@@ -1,7 +1,7 @@
 {
   "name": "Smart Todo",
-  "short_name": "Todo",
-  "orientation":"portrait",
+  "short_name": "🤓 ✔",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "images/icons/icon-96x96.png",
@@ -17,7 +17,8 @@
       "src": "images/icons/icon-144x144.png",
       "sizes": "144x144",
       "type": "image/png"
-    }],
+    }
+  ],
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "gray",
