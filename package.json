@@ -4,7 +4,8 @@
   "description": "only for learn react js",
   "main": "./build/index.js",
   "scripts": {
-    "start": "webpack-dev-server --port 9000 --hot --host 0.0.0.0"
+    "serve": "webpack-dev-server --port 9000 --hot --host 0.0.0.0",
+    "prod": "webpack && node server.js"
   },
   "repository": {
     "type": "git",
