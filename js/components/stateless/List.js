@@ -1,19 +1,27 @@
 import React from "react";
 import Task from "./Task";
-var List = ({ tasks, deleteTask }) => (
-  <div>
-    {tasks.map((task, i) => (
-      <Task
-        key={i}
-        taskId={task.taskId}
-        title={task.title}
-        deleteTask={deleteTask}
-        type={task.taskType}
-        state={task.state}
-      />
-    ))}
-  </div>
-);
+
+const types = {
+  task: "todo"
+};
+
+var List = props => {
+  const { tasks, deleteTask } = props;
+  return (
+    <div>
+      {tasks.map((task, i) => (
+        <Task
+          key={i}
+          taskId={task.taskId}
+          title={task.title}
+          deleteTask={deleteTask}
+          type={task.taskType}
+          state={task.state}
+        />
+      ))}
+    </div>
+  );
+};
 //Default Props
 List.defaultProps = { tasks: [] };
 
