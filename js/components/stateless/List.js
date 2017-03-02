@@ -6,17 +6,15 @@ const types = {
 };
 
 var List = props => {
-  const { tasks, deleteTask } = props;
+  const { tasks, deleteTask, reorderTasks } = props;
   return (
     <div>
       {tasks.map((task, i) => (
         <Task
           key={i}
-          taskId={task.taskId}
-          title={task.title}
+          task={task}
           deleteTask={deleteTask}
-          type={task.taskType}
-          state={task.state}
+          reorderTasks={reorderTasks}
         />
       ))}
     </div>

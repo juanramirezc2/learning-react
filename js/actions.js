@@ -8,6 +8,7 @@ export const ADD = "add";
 export const SELECT = "select";
 export const SETINITIAL = "setInitial";
 export const DELETE = "delete";
+export const REORDER = "reorder";
 
 /*
 * action creators
@@ -20,6 +21,16 @@ export function addTask(taskData) {
       ...taskData
     };
     insertTask(newTask).onsuccess = e => dispatch({ type: ADD, ...newTask });
+  };
+}
+
+/* change the order of the tasks, move source before target, replicate to indexedDb? */
+export function reorderTaskAction(source, target, replicate) {
+  return dispatch => {
+    if (replicate) {
+    } else {
+      dispatch({ type: REORDER, source, target });
+    }
   };
 }
 

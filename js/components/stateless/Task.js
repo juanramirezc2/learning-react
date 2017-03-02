@@ -20,7 +20,7 @@ function collectDrag(connect, monitor) {
 const dragSpec = {
   beginDrag(props) {
     return {
-      taskId: props.taskId
+      taskId: props.task.taskId
     };
   },
   endDrag(props, monitor, component) {
@@ -32,12 +32,23 @@ const dragSpec = {
 const dropSpec = {
   drop: function(props) {
     console.log(`dropped element`);
+  },
+  hover: function(props, monitor, component) {
+    const dragIndex = monitor.getItem().index;
+    const hoverIndex = props.index;
+    console.log("sth");
+
+    // Don't replace items with themselves
+    if (dragIndex === hoverIndex) {
+      return;
+    }
   }
 };
 
 const collectDrop = function(connect, monitor) {
   return {
-    connectDropTarget: connect.dropTarget()
+    connectDropTarget: connect.dropTarget(),
+    itemOver: monitor.getItem()
   };
 };
 
@@ -47,26 +58,33 @@ const TaskType = {
 };
 
 const task = props => {
+  /* provided functions */
+  const {
+    deleteTask,
+    connectDragSource,
+    isDragging,
+    reorderTasks,
+    connectDropTarget,
+    itemOver
+  } = props;
+
+  /* task data */
   const {
     taskId,
     title,
     type,
-    state,
-    deleteTask,
-    connectDragSource,
-    isDragging,
-    connectDropTarget
-  } = props;
-  return connectDropTarget(
-    connectDragSource(
+    state
+  } = props.task;
+
+  return connectDragSource(
+    connectDropTarget(
       <a
         href="#"
         className={classNames(app.task, {
-          [app.task_complete]: state.complete
+          [app.task_isDraging]: isDragging
         })}
         onClick={deleteTask(taskId)}
       >
-        {isDragging}
         <div className={app.task__type}>
           {TaskType[type]}
         </div>

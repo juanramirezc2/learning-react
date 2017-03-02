@@ -17,8 +17,9 @@
   &__title {
 
   }
-  &_complete {
-    text-decoration: line-through;
+  &_isDraging {
+    opacity: 0.2;
+    border: dotted 1px black;
   }
 }
 .head{
