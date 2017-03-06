@@ -3,7 +3,7 @@ import Task from "./stateless/Task";
 import List from "./stateless/List";
 import ProvidedList from "./containers/taskProvider";
 import ProvidedHead from "./containers/addAndSelectTask";
-import HTML5Backend from "react-dnd-html5-backend";
+import { default as TouchBackend } from "react-dnd-touch-backend";
 import { DragDropContext } from "react-dnd";
 
 var App = () => (
@@ -13,4 +13,4 @@ var App = () => (
   </div>
 );
 
-export default DragDropContext(HTML5Backend)(App);
+export default DragDropContext(TouchBackend)(App);
