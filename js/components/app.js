@@ -13,7 +13,7 @@ var App = () => (
     <ProvidedList />
   </div>
 );
-const appWrapped 
+var appWrapped 
 if(window.innerWidth>768){
   appWrapped = DragDropContext()
 }
