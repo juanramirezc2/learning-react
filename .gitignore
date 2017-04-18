@@ -163,4 +163,4 @@ bin/js
 bin/css
 
 # Coverage files
-build
+dist/bundle.js
