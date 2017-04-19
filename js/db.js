@@ -28,7 +28,6 @@ function onerror(event) {
 }
 function reorderTask(sourceId, targetId){
   //TODO: updare task from sourceId to targetId in the Db
-
 }
 function getInitialState(store) {
   let reduxState = { tasks: [] };
