@@ -26,20 +26,22 @@ export default (state = initialState, action) => {
       console.log(state.tasks, "state before hover");
       let sourceIndex, targetIndex;
       for (let i = 0; i < state.tasks.length; i++) {
-        if (state.tasks[i].taskId == action.source) {
+        if (state.tasks[i].taskId == action.source ) {
           sourceIndex = i;
         } else if (state.tasks[i].taskId == action.target) {
           targetIndex = i;
         }
       }
-      console.log(sourceIndex, targetIndex);
-      //debugger;
-      let temp = state.tasks[sourceIndex];
-      state.tasks[sourceIndex] = state.tasks[targetIndex];
-      state.tasks[targetIndex] = temp;
-      console.log(state.tasks, "state after hover");
+      console.log(sourceIndex, targetIndex);  
+      console.log(state.tasks[sourceIndex],state.tasks[targetIndex],"values of source Index and target Index")
+      //clone task state
+      var reorderedTask = state.tasks.splice(0)
+      let temp = reorderedTask[sourceIndex];
+      reorderedTask[sourceIndex] = reorderedTask[targetIndex];
+      reorderedTask[targetIndex] = temp;
+      console.log(reorderedTask, "state after hover");
       return {
-        tasks: state.tasks
+        tasks: reorderedTask
       };
 
     case SETINITIAL:

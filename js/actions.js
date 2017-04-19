@@ -28,6 +28,7 @@ export function addTask(taskData) {
 export function reorderTaskAction(source, target, replicate) {
   return dispatch => {
     if (replicate) {
+      //replicate into de local DB
     } else {
       dispatch({ type: REORDER, source, target });
     }

@@ -15,7 +15,7 @@ var App = () => (
 );
 var appWrapped 
 if(window.innerWidth>768){
-  appWrapped = DragDropContext()
+  appWrapped = DragDropContext(HTMLBackend)(App)
 }
 else {
   appWrapped = DragDropContext(TouchBackend({ enableMouseEvents: true }))(App);

@@ -4,6 +4,7 @@ import app from "../../../css/app.css";
 import classNames from "classnames";
 import { DragSource } from "react-dnd";
 import { DropTarget } from "react-dnd";
+import { findDOMNode } from 'react-dom';
 
 /* drag functions */
 const Types = {
@@ -34,14 +35,21 @@ const dropSpec = {
     console.log(`dropped element`);
   },
   hover: function(props, monitor, component) {
-    const dragIndex = monitor.getItem().index;
-    const hoverIndex = props.index;
-    console.log("sth");
-
-    // Don't replace items with themselves
-    if (dragIndex === hoverIndex) {
+    const dragId = monitor.getItem().taskId;
+    const hoverId = props.task.taskId;
+    const componentDomEl = findDOMNode(component); 
+    const boundingReactHover = componentDomEl.getBoundingClientRect();
+    const mousePosition = monitor.getClientOffset()
+    const middleComponent = boundingReactHover.top + ((boundingReactHover.bottom-boundingReactHover.top)/2);
+     // Don't replace items with themselves
+    if (dragId === hoverId) {
       return;
     }
+    if(middleComponent!==mousePosition.y){
+      return
+    }
+    console.log(middleComponent,mousePosition.y,"crossing the middle");
+    props.reorderTasks(dragId,hoverId,false)
   }
 };
 
