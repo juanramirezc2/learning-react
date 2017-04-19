@@ -26,7 +26,10 @@ function onsuccess(store) {
 function onerror(event) {
   console.log(event);
 }
+function reorderTask(sourceId, targetId){
+  //TODO: updare task from sourceId to targetId in the Db
 
+}
 function getInitialState(store) {
   let reduxState = { tasks: [] };
   let transaction = db.transaction(["toDoList"]);
@@ -65,5 +68,6 @@ export {
   onsuccess,
   getInitialState,
   onerror,
-  insertTask
+  insertTask,
+  reorderTask
 };

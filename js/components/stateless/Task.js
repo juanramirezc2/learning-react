@@ -31,8 +31,8 @@ const dragSpec = {
 
 /* drop functions */
 const dropSpec = {
-  drop: function(props) {
-    console.log(`dropped element`);
+  drop: function(props, monitor) {
+    console.log("drop")
   },
   hover: function(props, monitor, component) {
     const dragId = monitor.getItem().taskId;
@@ -45,11 +45,11 @@ const dropSpec = {
     if (dragId === hoverId) {
       return;
     }
-    if(middleComponent!==mousePosition.y){
+    // mobile browsers are very accurate and return float 
+    if(middleComponent!==Math.trunc(mousePosition.y)){
       return
     }
-    console.log(middleComponent,mousePosition.y,"crossing the middle");
-    props.reorderTasks(dragId,hoverId,false)
+    props.reorderTasks(dragId,hoverId)
   }
 };
 

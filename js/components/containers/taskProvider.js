@@ -9,8 +9,8 @@ const mapDispatchToProps = dispatch => ({
   deleteTask: taskId => () => {
     dispatch(deleteTaskAction(taskId));
   },
-  reorderTasks: (source, target, replicate) => {
-    dispatch(reorderTaskAction(source, target, replicate));
+  reorderTasks: (source, target) => {
+    dispatch(reorderTaskAction(source, target));
   }
 });
 const Tasks = connect(mapStateToProps, mapDispatchToProps)(List);

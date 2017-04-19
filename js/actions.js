@@ -1,4 +1,4 @@
-import { insertTask, deleteTask } from "./db";
+import { insertTask, deleteTask, reorderTask } from "./db";
 
 /*
 * action type
@@ -25,13 +25,11 @@ export function addTask(taskData) {
 }
 
 /* change the order of the tasks, move source before target, replicate to indexedDb? */
-export function reorderTaskAction(source, target, replicate) {
+export function reorderTaskAction(source, target) {
   return dispatch => {
-    if (replicate) {
-      //replicate into de local DB
-    } else {
-      dispatch({ type: REORDER, source, target });
-    }
+      reorderTask(source, target).onsuccess = e => {
+        dispatch({ type: REORDER, source, target });
+      }
   };
 }
 
