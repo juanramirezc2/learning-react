@@ -26,8 +26,9 @@ export function addTask(taskData) {
 
 /* change the order of the tasks, move source before target, replicate to indexedDb? */
 export function reorderTaskAction(source, target) {
+  /* transactions doesn't have onsuccess has oncomplete */
   return dispatch => {
-      reorderTask(source, target).onsuccess = e => {
+      reorderTask(source, target).oncomplete = e => {
         dispatch({ type: REORDER, source, target });
       }
   };

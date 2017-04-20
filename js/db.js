@@ -27,7 +27,11 @@ function onerror(event) {
   console.log(event);
 }
 function reorderTask(sourceId, targetId){
-  //TODO: updare task from sourceId to targetId in the Db
+  //TODO: 
+  let transaction = db.transaction(["toDoList"],"readwrite")
+  let objectStore = transaction.objectStore("toDoList")
+  console.log(objectStore.getAll())
+  return transaction
 }
 function getInitialState(store) {
   let reduxState = { tasks: [] };

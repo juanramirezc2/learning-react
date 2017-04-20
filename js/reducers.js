@@ -25,6 +25,7 @@ export default (state = initialState, action) => {
 
     case REORDER:
       return {
+        //TODO: figure out why this move function isn't swaping elements in the array 
         tasks: move(state.tasks, action.source, action.target)
       };
 
