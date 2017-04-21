@@ -29,6 +29,7 @@ export function reorderTaskAction(source, target) {
   /* transactions doesn't have onsuccess has oncomplete */
   return dispatch => {
       reorderTask(source, target).oncomplete = e => {
+        console.log("dispatched called with", REORDER)
         dispatch({ type: REORDER, source, target });
       }
   };

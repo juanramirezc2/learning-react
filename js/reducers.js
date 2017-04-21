@@ -24,9 +24,10 @@ export default (state = initialState, action) => {
       };
 
     case REORDER:
+      let reorderedlist = move(state.tasks, action.source, action.target)
       return {
         //TODO: figure out why this move function isn't swaping elements in the array 
-        tasks: move(state.tasks, action.source, action.target)
+        tasks: reorderedlist
       };
 
     case SETINITIAL:
