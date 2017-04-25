@@ -1,8 +1,8 @@
-import React, { PropType } from "react";
-import TextField from "./TextField";
-import Button from "./Button";
-import app from "../../../css/app.css";
-import classNames from "classnames";
+import React, { PropType } from 'react';
+import TextField from './TextField';
+import Button from './Button';
+import app from '../../../css/app.css';
+import classNames from 'classnames';
 
 class Head extends React.Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class Head extends React.Component {
   }
   onSubmit(e) {
     e.preventDefault();
-    this.props.addCallback(this.taskName.value);
+    this.props.addCallback(this.taskName.value, this.props.order);
     this.form.reset();
   }
   render() {

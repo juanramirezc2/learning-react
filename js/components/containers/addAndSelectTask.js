@@ -1,19 +1,23 @@
-import { connect } from "react-redux";
-import Head from "../stateless/Head";
-import { addTask } from "../../actions";
+import { connect } from 'react-redux';
+import Head from '../stateless/Head';
+import { addTask } from '../../actions';
 
 const mapDispatchToProps = dispatch => ({
-  addCallback: title => {
+  addCallback: (title,order)=> {
     let newTask = {
       title,
-      taskType: "task",
-      state: "uncomplete",
-      notified: "false"
+      taskType: 'task',
+      state: 'uncomplete',
+      notified: 'false',
+      order
     };
     dispatch(addTask(newTask));
   },
-  selectCallback: title => console.log("test App callback")
+  selectCallback: title => console.log('test App callback')
 });
-const CreateAndSelect = connect(null, mapDispatchToProps)(Head);
+const mapStateToProps = state => ({
+  order: state.tasks.length
+});
+const CreateAndSelect = connect(mapStateToProps, mapDispatchToProps)(Head);
 
 export default CreateAndSelect;

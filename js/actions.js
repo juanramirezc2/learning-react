@@ -20,6 +20,7 @@ export function addTask(taskData) {
       taskId: Math.random(),
       ...taskData
     };
+    console.log(newTask)
     insertTask(newTask).onsuccess = e => dispatch({ type: ADD, ...newTask });
   };
 }
