@@ -40,14 +40,9 @@ const dropSpec = {
     const componentDomEl = findDOMNode(component); 
     const boundingReactHover = componentDomEl.getBoundingClientRect();
     const mousePosition = monitor.getClientOffset()
-    const middleComponent = boundingReactHover.top + ((boundingReactHover.bottom-boundingReactHover.top)/2);
      // Don't replace items with themselves
     if (dragId === hoverId) {
       return;
-    }
-    // mobile browsers are very accurate and return float 
-    if(middleComponent!==Math.trunc(mousePosition.y)){
-      return
     }
     props.reorderTasks(dragId,hoverId)
   }
