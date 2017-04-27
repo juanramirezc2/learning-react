@@ -48,7 +48,8 @@ function getInitialState(store) {
   let reduxState = { tasks: [] };
   let transaction = db.transaction(['toDoList']);
   let objectStore = transaction.objectStore('toDoList');
-  objectStore.openCursor().onsuccess = event => {
+  let orderIndex = objectStore.index('order');
+  orderIndex.openCursor().onsuccess = event => {
     let cursor = event.target.result;
     if (cursor) {
       reduxState.tasks.push(cursor.value);

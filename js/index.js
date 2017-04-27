@@ -12,7 +12,7 @@ import { onerror, onsuccess, onupgradeneeded } from "./db";
 let store = createStore(reducer, applyMiddleware(thunk));
 
 //Indexed Db Stuff
-var request = window.indexedDB.open("reduxStore", 15);
+var request = window.indexedDB.open("reduxStore", 16);
 request.onerror = onerror;
 request.onsuccess = onsuccess(store);
 request.onupgradeneeded = onupgradeneeded;
