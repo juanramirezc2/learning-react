@@ -81,7 +81,7 @@ const task = props => {
 
   return connectDragSource(
     connectDropTarget(
-      <a
+      <div
         href="#"
         className={classNames(app.task, {
           [app.task_isDraging]: isDragging
@@ -94,7 +94,7 @@ const task = props => {
         <div className={app.task__title}>
           {title}
         </div>
-      </a>
+      </div>
     )
   );
 };
