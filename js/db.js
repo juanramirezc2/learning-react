@@ -29,6 +29,7 @@ function onerror(event) {
 function reorderTask(sourceInfo, targetInfo) {
   let transaction = db.transaction(['toDoList'], 'readwrite');
   let objectStore = transaction.objectStore('toDoList');
+  
   objectStore.get(sourceInfo.id).onsuccess = ({ target }) => {
     let sourceTask = target.result;
     sourceTask.order = targetInfo.order;
@@ -40,22 +41,6 @@ function reorderTask(sourceInfo, targetInfo) {
     targetTask.order = sourceInfo.order;
     console.log('target task modified', targetTask);
     objectStore.put(targetTask);
-  };
-
-  //TODO create the order index
-  /*let keyRangeValue = IDBKeyRange.bound(sourceId, targetId);
-  let tasksToReorder = objectStore.getAll(keyRangeValue) 
-  tasksToReorder.onsuccess = (e)=>{
-    console.log("result of get all", e.result)
-  }  */
-  let myIndex = objectStore.index('order');
-  myIndex.openCursor.onsuccess = function(event) {
-    var cursor = event.target.result;
-    //cursor ordered by the order index ;)
-    if (cursor) {
-      console.log(cursor.value);
-      cursor.continue();
-    }
   };
   return transaction;
 }

@@ -37,11 +37,9 @@ const dropSpec = {
   },
   hover: function(props, monitor, component) {
     const dragId = monitor.getItem().taskId;
-    const taskOrder = monitor.getItem().taskOrder;
-    console.log(taskOrder)
     const hoverId = props.task.taskId;
+    const taskOrder = monitor.getItem().taskOrder; 
     const hoverOrder = props.task.order;
-    console.log(hoverOrder)
     const componentDomEl = findDOMNode(component);
     const boundingReactHover = componentDomEl.getBoundingClientRect();
     const mousePosition = monitor.getClientOffset();
@@ -49,6 +47,8 @@ const dropSpec = {
     if (dragId === hoverId) {
       return;
     }
+    console.log(taskOrder)
+    console.log(hoverOrder)
     props.reorderTasks(
       { id: dragId, order: taskOrder },
       { id: hoverId, order: hoverOrder }

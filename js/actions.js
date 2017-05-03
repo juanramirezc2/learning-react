@@ -19,6 +19,7 @@ async function refreshRedux(dispatch) {
   let state = { tasks: allData };
   dispatch({ type: SETINITIAL, state });
 }
+/* add a new task */
 export function addTask(taskData) {
   return dispatch => {
     let newTask = {
@@ -33,14 +34,13 @@ export function addTask(taskData) {
 
 /* change the order of the tasks, move source before target, replicate to indexedDb? */
 export function reorderTaskAction(sourceInfo, targetInfo) {
-  /* transactions doesn't have onsuccess has oncomplete */
   return dispatch => {
     reorderTask(sourceInfo, targetInfo).oncomplete = e => {
       refreshRedux(dispatch)
     };
   };
 }
-
+/* delete a task */
 export function deleteTaskAction(taskId) {
   return dispatch => {
     deleteTask(taskId).onsuccess = e => {
