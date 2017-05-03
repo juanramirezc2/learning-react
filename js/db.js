@@ -3,10 +3,10 @@ import { setInitialState } from './actions';
 let db;
 
 function insertTask(Task) {
-  var toDoListObjectStore = db
-    .transaction(['toDoList'], 'readwrite')
-    .objectStore('toDoList');
-  return toDoListObjectStore.add(Task);
+  let insertTransaction = db.transaction(['toDoList'], 'readwrite');
+  let todoListObjectStore = insertTransaction.objectStore('toDoList');
+  todoListObjectStore.add(Task);
+  return insertTransaction;
 }
 
 function deleteTask(taskId) {
@@ -26,38 +26,63 @@ function onsuccess(store) {
 function onerror(event) {
   console.log(event);
 }
-function reorderTask(sourceId, targetId) {
-  //TODO:
+function reorderTask(sourceInfo, targetInfo) {
   let transaction = db.transaction(['toDoList'], 'readwrite');
   let objectStore = transaction.objectStore('toDoList');
+  objectStore.get(sourceInfo.id).onsuccess = ({ target }) => {
+    let sourceTask = target.result;
+    sourceTask.order = targetInfo.order;
+    console.log('source task modified', sourceTask);
+    objectStore.put(sourceTask);
+  };
+  objectStore.get(targetInfo.id).onsuccess = ({ target }) => {
+    let targetTask = target.result;
+    targetTask.order = sourceInfo.order;
+    console.log('target task modified', targetTask);
+    objectStore.put(targetTask);
+  };
+
   //TODO create the order index
+  /*let keyRangeValue = IDBKeyRange.bound(sourceId, targetId);
+  let tasksToReorder = objectStore.getAll(keyRangeValue) 
+  tasksToReorder.onsuccess = (e)=>{
+    console.log("result of get all", e.result)
+  }  */
   let myIndex = objectStore.index('order');
   myIndex.openCursor.onsuccess = function(event) {
     var cursor = event.target.result;
     //cursor ordered by the order index ;)
-    if(cursor){
-      console.log(cursor.value)
-      cursor.continue()
+    if (cursor) {
+      console.log(cursor.value);
+      cursor.continue();
     }
   };
-
-  console.log(objectStore.get(sourceId), objectStore.get(targetId));
   return transaction;
 }
-function getInitialState(store) {
-  let reduxState = { tasks: [] };
+
+/* get all the task from indexedDB this method will be call everytime redux state needs an update */
+function getAllData(){
   let transaction = db.transaction(['toDoList']);
   let objectStore = transaction.objectStore('toDoList');
   let orderIndex = objectStore.index('order');
-  orderIndex.openCursor().onsuccess = event => {
-    let cursor = event.target.result;
-    if (cursor) {
-      reduxState.tasks.push(cursor.value);
+  let allData = []
+  return new Promise((resolve,reject)=>{
+    orderIndex.openCursor().onsuccess = ({target})=>{
+    let cursor = target.result
+    if(cursor){
+      allData.push(cursor.value)
       cursor.continue();
-    } else {
-      store.dispatch(setInitialState(reduxState));
     }
-  };
+    else{
+      resolve(allData)
+    }
+  }
+  })
+}
+
+async function getInitialState(store) {
+  let allData = await getAllData()
+  store.dispatch(setInitialState(allData));
 }
 
 function onupgradeneeded(event) {
@@ -76,13 +101,14 @@ function onupgradeneeded(event) {
   objectStore.createIndex('typeTodo', 'taskType', { unique: false });
   objectStore.createIndex('stateTodo', 'state', { unique: false });
   objectStore.createIndex('notifiedTodo', 'notified', { unique: false });
-  objectStore.createIndex('order', 'order', { unique: true });
+  objectStore.createIndex('order', 'order', { unique: false });
 }
 export {
   deleteTask,
   onupgradeneeded,
   onsuccess,
   getInitialState,
+  getAllData,
   onerror,
   insertTask,
   reorderTask
