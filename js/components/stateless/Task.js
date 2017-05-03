@@ -1,14 +1,14 @@
-import { PropTypes } from "react";
-import React from "react";
-import app from "../../../css/app.css";
-import classNames from "classnames";
-import { DragSource } from "react-dnd";
-import { DropTarget } from "react-dnd";
+import { PropTypes } from 'react';
+import React from 'react';
+import app from '../../../css/app.css';
+import classNames from 'classnames';
+import { DragSource } from 'react-dnd';
+import { DropTarget } from 'react-dnd';
 import { findDOMNode } from 'react-dom';
 
 /* drag functions */
 const Types = {
-  task: "todo"
+  task: 'todo'
 };
 
 function collectDrag(connect, monitor) {
@@ -21,7 +21,8 @@ function collectDrag(connect, monitor) {
 const dragSpec = {
   beginDrag(props) {
     return {
-      taskId: props.task.taskId
+      taskId: props.task.taskId,
+      taskOrder: props.task.order
     };
   },
   endDrag(props, monitor, component) {
@@ -32,19 +33,26 @@ const dragSpec = {
 /* drop functions */
 const dropSpec = {
   drop: function(props, monitor) {
-    console.log("drop")
+    console.log('drop');
   },
   hover: function(props, monitor, component) {
     const dragId = monitor.getItem().taskId;
     const hoverId = props.task.taskId;
-    const componentDomEl = findDOMNode(component); 
+    const taskOrder = monitor.getItem().taskOrder; 
+    const hoverOrder = props.task.order;
+    const componentDomEl = findDOMNode(component);
     const boundingReactHover = componentDomEl.getBoundingClientRect();
-    const mousePosition = monitor.getClientOffset()
-     // Don't replace items with themselves
+    const mousePosition = monitor.getClientOffset();
+    // Don't replace items with themselves
     if (dragId === hoverId) {
       return;
     }
-    props.reorderTasks(dragId,hoverId)
+    console.log(taskOrder)
+    console.log(hoverOrder)
+    props.reorderTasks(
+      { id: dragId, order: taskOrder },
+      { id: hoverId, order: hoverOrder }
+    );
   }
 };
 
@@ -56,8 +64,8 @@ const collectDrop = function(connect, monitor) {
 };
 
 const TaskType = {
-  event: "🔘",
-  task: "➖"
+  event: '🔘',
+  task: '➖'
 };
 
 const task = props => {
@@ -72,12 +80,7 @@ const task = props => {
   } = props;
 
   /* task data */
-  const {
-    taskId,
-    title,
-    type,
-    state
-  } = props.task;
+  const { taskId, title, type, state } = props.task;
 
   return connectDragSource(
     connectDropTarget(

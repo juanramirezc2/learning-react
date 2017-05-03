@@ -12,8 +12,7 @@ module.exports = {
         test: /\.js$/,
         use: ["react-hot-loader", "babel-loader"],
         include: [
-          path.join(__dirname, "js"),
-          path.join(__dirname, "node_modules/react-redux-provide")
+          path.join(__dirname, "js")
         ]
       },
       {

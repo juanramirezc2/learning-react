@@ -1,3 +1,4 @@
+import "babel-polyfill";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app";
@@ -12,7 +13,7 @@ import { onerror, onsuccess, onupgradeneeded } from "./db";
 let store = createStore(reducer, applyMiddleware(thunk));
 
 //Indexed Db Stuff
-var request = window.indexedDB.open("reduxStore", 16);
+var request = window.indexedDB.open("reduxStore", 17);
 request.onerror = onerror;
 request.onsuccess = onsuccess(store);
 request.onupgradeneeded = onupgradeneeded;
