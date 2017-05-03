@@ -5,7 +5,8 @@
   "main": "./build/index.js",
   "scripts": {
     "serve": "webpack-dev-server --port 9000 --hot --host 0.0.0.0",
-    "prod": "webpack && node server.js"
+    "prod": "webpack && node server.js",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
