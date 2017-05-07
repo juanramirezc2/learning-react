@@ -15,24 +15,28 @@ export const REORDER = 'reorder';
 /*notifications creator ;) thinking towards push notifications*/
   // function for creating the notification
   function createNotification(title) {
-    debugger;
-    // Let's check if the browser supports notifications
+     // Let's check if the browser supports notifications
     if (!"showNotification" in ServiceWorkerRegistration.prototype) {
       console.log("This browser does not support notifications.");
     }
-
-    // Let's check if the user is okay to get some notification
+     // Let's check if the user is okay to get some notification
     else if (Notification.permission === "granted") {
       // If it's okay let's create a notification
       
       var img = '/images/icons/icon-128x128.png';
       var text = 'HEY! Your task "' + title + '" is now overdue.';
-      // 🙁 global work around TODO:change this
-      // android deprecated Notification constructor
-      var notification = window.jgserviceWorkerregistration.showNotification('To do list', { body: text, icon: img });
+
+      navigator.serviceWorker.ready.then((serviceWorkerRegistration)=>{
+        var notification = serviceWorkerRegistration.showNotification('To do list', { body: text, icon: img });
+       })
+      
       
       window.navigator.vibrate(500);
     }
+   
+   
+
+   
 
     // Otherwise, we need to ask the user for permission
     // Note, Chrome does not implement the permission static property
@@ -49,10 +53,9 @@ export const REORDER = 'reorder';
         if (permission === "granted") {
           var img = '/images/icons/icon-128x128.png';
           var text = 'HEY! Your task "' + title + '" is now overdue.';
-          // 🙁 global work around TODO:change this and figure out how to get service worker registration from here
-          // android deprecated Notification constructor
-          var notification = window.jgserviceWorkerregistration.showNotification('To do list', { body: text, icon: img });
-          
+          navigator.serviceWorker.ready.then((serviceWorkerRegistration)=>{
+             var notification = serviceWorkerRegistration.showNotification('To do list', { body: text, icon: img });
+          })
           window.navigator.vibrate(500);
         }
       });
