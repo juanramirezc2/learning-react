@@ -1,4 +1,4 @@
-var cache_name = "my-site-cache-v29";
+var cache_name = "my-site-cache-v30";
 var urlsToCache = ["/", "/index.html", "/test.html","/bundle.js"];
 
 self.addEventListener("install", function(event) {
