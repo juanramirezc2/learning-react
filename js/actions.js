@@ -15,9 +15,9 @@ export const REORDER = 'reorder';
 /*notifications creator ;) thinking towards push notifications*/
   // function for creating the notification
   function createNotification(title) {
-
+    debugger;
     // Let's check if the browser supports notifications
-    if (!"Notification" in window) {
+    if (!"showNotification" in ServiceWorkerRegistration.prototype) {
       console.log("This browser does not support notifications.");
     }
 
@@ -27,7 +27,9 @@ export const REORDER = 'reorder';
       
       var img = '/images/icons/icon-128x128.png';
       var text = 'HEY! Your task "' + title + '" is now overdue.';
-      var notification = new Notification('To do list', { body: text, icon: img });
+      // 🙁 global work around TODO:change this
+      // android deprecated Notification constructor
+      var notification = window.jgserviceWorkerregistration.showNotification('To do list', { body: text, icon: img });
       
       window.navigator.vibrate(500);
     }
@@ -47,7 +49,9 @@ export const REORDER = 'reorder';
         if (permission === "granted") {
           var img = '/images/icons/icon-128x128.png';
           var text = 'HEY! Your task "' + title + '" is now overdue.';
-          var notification = new Notification('To do list', { body: text, icon: img });
+          // 🙁 global work around TODO:change this and figure out how to get service worker registration from here
+          // android deprecated Notification constructor
+          var notification = window.jgserviceWorkerregistration.showNotification('To do list', { body: text, icon: img });
           
           window.navigator.vibrate(500);
         }
