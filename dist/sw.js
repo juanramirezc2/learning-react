@@ -1,8 +1,8 @@
-var cache_name = "my-site-cache-v32";
-var urlsToCache = ["/", "/index.html", "/test.html","/bundle.js"];
+var cache_name = 'my-site-cache-v37';
+var urlsToCache = ['/', '/index.html', '/test.html', '/bundle.js'];
 
-self.addEventListener("install", function(event) {
-  console.log("install event");
+self.addEventListener('install', function(event) {
+  console.log('install event');
   // Perform install steps
   event.waitUntil(
     caches.open(cache_name).then(function(cache) {
@@ -12,7 +12,7 @@ self.addEventListener("install", function(event) {
 });
 
 let urlsFetched = [];
-self.addEventListener("fetch", function(event) {
+self.addEventListener('fetch', function(event) {
   urlsFetched.push(event.request);
   event.respondWith(
     caches.match(event.request).then(function(response) {
@@ -25,14 +25,14 @@ self.addEventListener("fetch", function(event) {
   );
 });
 
-self.addEventListener("activate", function(event) {
-  console.log("activate triggered", "SW starts up");
+self.addEventListener('activate', function(event) {
+  console.log('activate triggered', 'SW starts up');
   event.waitUntil(
     caches.keys().then(keyList => {
       Promise.all(
         keyList.map(key => {
           if (key !== cache_name) {
-            console.log("deleting old cache");
+            console.log('deleting old cache');
             return caches.delete(key);
           }
         })
