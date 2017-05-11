@@ -21,7 +21,6 @@
             return outputArray;
         }
         if ('serviceWorker' in navigator) {
-
             window.addEventListener('load', function () {
                 navigator.serviceWorker.register('/sw.js').then(function (ServiceWorkerRegistration) {
                     // Registration was successful
@@ -32,11 +31,10 @@
                     };
                     return ServiceWorkerRegistration.pushManager.subscribe(subscribeOptions);
                 }).then(function (pushSubscription) {
-                    console.log(`this is the endpoint of this user ${PushSubscription.endpoint}`)
                     return fetch(`/api/save-subscription`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(PushSubscription)
+                        body: JSON.stringify(pushSubscription)
                     })
                 }).catch(function (err) {
                     // registration failed :(
