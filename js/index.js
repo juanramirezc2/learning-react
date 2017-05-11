@@ -8,9 +8,11 @@ import { Provider } from "react-redux";
 import reducer from "./reducers";
 import { onerror, onsuccess, onupgradeneeded } from "./db";
 
+// Redux chrome extension
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // SERVICE WORKER NOT WEB WORKER
 
-let store = createStore(reducer, applyMiddleware(thunk));
+let store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
 //Indexed Db Stuff
 var request = window.indexedDB.open("reduxStore", 17);

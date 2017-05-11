@@ -10,57 +10,52 @@ export const SETINITIAL = 'setInitial';
 export const DELETE = 'delete';
 export const REORDER = 'reorder';
 
-
-
 /*notifications creator ;) thinking towards push notifications*/
-  // function for creating the notification
-  function createNotification(title) {
-     // Let's check if the browser supports notifications
-    if (!"showNotification" in ServiceWorkerRegistration.prototype) {
-      console.log("This browser does not support notifications.");
-    }
-     // Let's check if the user is okay to get some notification
-    else if (Notification.permission === "granted") {
-      // If it's okay let's create a notification
-      
-      var img = '/images/icons/icon-128x128.png';
-      var text = 'HEY! Your task "' + title + '" is now overdue.';
+// function for creating the notification
+function createNotification(title) {
+  // Let's check if the browser supports notifications
+  if (!'showNotification' in ServiceWorkerRegistration.prototype) {
+    console.log('This browser does not support notifications.');
+  } else if (Notification.permission === 'granted') {
+    // Let's check if the user is okay to get some notification
+    // If it's okay let's create a notification
 
-      navigator.serviceWorker.ready.then((serviceWorkerRegistration)=>{
-        var notification = serviceWorkerRegistration.showNotification('To do list', { body: text, icon: img });
-       })
-      
-      
-      window.navigator.vibrate(500);
-    }
-   
-   
+    var img = '/images/icons/icon-128x128.png';
+    var text = 'HEY! Your task "' + title + '" is now overdue.';
 
-   
+    navigator.serviceWorker.ready.then(serviceWorkerRegistration => {
+      var notification = serviceWorkerRegistration.showNotification(
+        'To do list',
+        { body: text, icon: img }
+      );
+    });
 
+    window.navigator.vibrate(500);
+  } else if (Notification.permission !== 'denied') {
     // Otherwise, we need to ask the user for permission
     // Note, Chrome does not implement the permission static property
     // So we have to check for NOT 'denied' instead of 'default'
-    else if (Notification.permission !== 'denied') {
-      Notification.requestPermission(function (permission) {
+    Notification.requestPermission(function(permission) {
+      // Whatever the user answers, we make sure Chrome stores the information
+      if (!('permission' in Notification)) {
+        Notification.permission = permission;
+      }
 
-        // Whatever the user answers, we make sure Chrome stores the information
-        if(!('permission' in Notification)) {
-          Notification.permission = permission;
-        }
-
-        // If the user is okay, let's create a notification
-        if (permission === "granted") {
-          var img = '/images/icons/icon-128x128.png';
-          var text = 'HEY! Your task "' + title + '" is now overdue.';
-          navigator.serviceWorker.ready.then((serviceWorkerRegistration)=>{
-             var notification = serviceWorkerRegistration.showNotification('To do list', { body: text, icon: img });
-          })
-          window.navigator.vibrate(500);
-        }
-      });
-    }
+      // If the user is okay, let's create a notification
+      if (permission === 'granted') {
+        var img = '/images/icons/icon-128x128.png';
+        var text = 'HEY! Your task "' + title + '" is now overdue.';
+        navigator.serviceWorker.ready.then(serviceWorkerRegistration => {
+          var notification = serviceWorkerRegistration.showNotification(
+            'To do list',
+            { body: text, icon: img }
+          );
+        });
+        window.navigator.vibrate(500);
+      }
+    });
   }
+}
 
 /*
 * action creators
@@ -79,7 +74,7 @@ export function addTask(taskData) {
       ...taskData
     };
     insertTask(newTask).oncomplete = e => {
-      refreshRedux(dispatch)
+      refreshRedux(dispatch);
     };
   };
 }
@@ -88,7 +83,7 @@ export function addTask(taskData) {
 export function reorderTaskAction(sourceInfo, targetInfo) {
   return dispatch => {
     reorderTask(sourceInfo, targetInfo).oncomplete = e => {
-      refreshRedux(dispatch)
+      refreshRedux(dispatch);
     };
   };
 }
@@ -96,8 +91,8 @@ export function reorderTaskAction(sourceInfo, targetInfo) {
 export function deleteTaskAction(taskId) {
   return dispatch => {
     deleteTask(taskId).onsuccess = e => {
-       refreshRedux(dispatch)
-       createNotification("test Notifications")
+      refreshRedux(dispatch);
+      createNotification('test Notifications');
     };
   };
 }
