@@ -16,10 +16,6 @@ function RegisterSw() {
     .register('/sw.js')
     .then(function(ServiceWorkerRegistration) {
       // Registration was successful
-      console.log(
-        'ServiceWorker registration successful with scope: ',
-        ServiceWorkerRegistration.scope
-      );
       const subscribeOptions = {
         userVisibleOnly: true,
         applicationServerKey: urlBase64ToUint8Array(
@@ -36,8 +32,7 @@ function RegisterSw() {
       });
     })
     .catch(function(err) {
-      // registration failed :(
-      console.log('ServiceWorker registration failed: ', err);
+      console.log('Something went wrong: ', err);
     });
 }
 
