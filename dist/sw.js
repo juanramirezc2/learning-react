@@ -11,6 +11,16 @@ self.addEventListener('install', function(event) {
   );
 });
 
+self.addEventListener('push', event => {
+  if (event.data) {
+    console.log('this push event has data:', event.data.text());
+    const promiseChain = self.registration.showNotification('Hello, World.');
+    event.waitUntil(promiseChain);
+  } else {
+    console.log('this push evetn has not data');
+  }
+});
+
 let urlsFetched = [];
 self.addEventListener('fetch', function(event) {
   urlsFetched.push(event.request);
