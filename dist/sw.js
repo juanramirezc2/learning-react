@@ -1,4 +1,4 @@
-var cache_name = 'my-site-cache-v37';
+var cache_name = 'my-site-cache-v38';
 var urlsToCache = ['/', '/index.html', '/test.html', '/bundle.js'];
 
 self.addEventListener('install', function(event) {
@@ -14,7 +14,7 @@ self.addEventListener('install', function(event) {
 self.addEventListener('push', event => {
   if (event.data) {
     console.log('this push event has data:', event.data.text());
-    const promiseChain = self.registration.showNotification('Hello, World.');
+    const promiseChain = self.registration.showNotification(even.data.text());
     event.waitUntil(promiseChain);
   } else {
     console.log('this push evetn has not data');
