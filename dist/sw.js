@@ -37,7 +37,7 @@ self.addEventListener('push', event => {
       ]
     };
     const promiseChain = self.registration.showNotification(
-      even.data.text(),
+      event.data.text(),
       options
     );
     event.waitUntil(promiseChain);
