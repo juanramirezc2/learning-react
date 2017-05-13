@@ -13,8 +13,33 @@ self.addEventListener('install', function(event) {
 
 self.addEventListener('push', event => {
   if (event.data) {
-    console.log('this push event has data:', event.data.text());
     const promiseChain = self.registration.showNotification(event.data.text());
+    // star wars vibration pattern
+    const options = {
+      vibrate: [
+        500,
+        110,
+        500,
+        110,
+        450,
+        110,
+        200,
+        110,
+        170,
+        40,
+        450,
+        110,
+        200,
+        110,
+        170,
+        40,
+        500
+      ]
+    };
+    const promiseChain = self.registration.showNotification(
+      even.data.text(),
+      options
+    );
     event.waitUntil(promiseChain);
   } else {
     console.log('this push evetn has not data');
