@@ -13,7 +13,6 @@ self.addEventListener('install', function(event) {
 
 self.addEventListener('push', event => {
   if (event.data) {
-    const promiseChain = self.registration.showNotification(event.data.text());
     // star wars vibration pattern
     const options = {
       vibrate: [
