@@ -14,11 +14,11 @@ class Head extends React.Component {
     this.form.reset();
   }
   render() {
-    const { selectCallback } = this.props;
+    console.log(this.props.order);
     return (
       <form
         onSubmit={this.onSubmit.bind(this)}
-        ref={el => this.form = el}
+        ref={el => (this.form = el)}
         className={app.head}
       >
         <TextField
@@ -28,7 +28,6 @@ class Head extends React.Component {
           }}
         />
         <input type="submit" value="add" />
-        <Button text="select" callback={selectCallback} />
       </form>
     );
   }

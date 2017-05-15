@@ -10,7 +10,7 @@
   border: solid 1px black;
   display: flex;
   text-decoration: none;
-  height: 50px; /* find a better way to size this */
+  min-height: 50px; 
   &__type {
     margin: 0 10px;
   }

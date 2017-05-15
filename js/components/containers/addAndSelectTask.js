@@ -3,7 +3,7 @@ import Head from '../stateless/Head';
 import { addTask } from '../../actions';
 
 const mapDispatchToProps = dispatch => ({
-  addCallback: (title,order)=> {
+  addCallback: (title, order) => {
     let newTask = {
       title,
       taskType: 'task',
@@ -12,8 +12,7 @@ const mapDispatchToProps = dispatch => ({
       order
     };
     dispatch(addTask(newTask));
-  },
-  selectCallback: title => console.log('test App callback')
+  }
 });
 const mapStateToProps = state => ({
   order: state.tasks.length
