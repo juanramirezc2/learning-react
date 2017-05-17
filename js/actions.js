@@ -92,7 +92,6 @@ export function deleteTaskAction(taskId) {
   return dispatch => {
     deleteTask(taskId).onsuccess = e => {
       refreshRedux(dispatch);
-      createNotification('test Notifications');
     };
   };
 }

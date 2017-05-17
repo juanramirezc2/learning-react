@@ -13,8 +13,10 @@ self.addEventListener('install', function(event) {
 
 self.addEventListener('push', event => {
   if (event.data) {
+    var img = '/images/icons/icon-128x128.png';
     // star wars vibration pattern
     const options = {
+      body: event.data.text(),
       vibrate: [
         500,
         110,
@@ -33,10 +35,13 @@ self.addEventListener('push', event => {
         170,
         40,
         500
-      ]
+      ],
+      icon: img,
+      badge: img,
+      image: 'https://www.allaboutbirds.org/guide/PHOTO/LARGE/annas_hummingbird_sim_1.jpg'
     };
     const promiseChain = self.registration.showNotification(
-      event.data.text(),
+      'TodoList notification',
       options
     );
     event.waitUntil(promiseChain);
