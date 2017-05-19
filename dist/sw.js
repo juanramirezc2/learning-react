@@ -1,3 +1,6 @@
+importScripts(
+  '/node_modules/workbox-sw/build/importScripts/workbox-sw.prod.v1.0.0.js'
+);
 var cache_name = 'my-site-cache-v41';
 var urlsToCache = ['/', '/index.html', '/test.html', '/bundle.js'];
 

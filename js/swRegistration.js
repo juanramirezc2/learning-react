@@ -15,6 +15,9 @@ function RegisterSw() {
   navigator.serviceWorker
     .register('/sw.js')
     .then(function(ServiceWorkerRegistration) {
+      console.log(
+        `service worker registered with scope ${ServiceWorkerRegistration.scope}`
+      );
       // Registration was successful
       const subscribeOptions = {
         userVisibleOnly: true,
