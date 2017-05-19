@@ -15,6 +15,7 @@
   "author": "juan gabriel ramirez",
   "license": "MIT",
   "devDependencies": {
+    "autoprefixer": "^7.1.1",
     "babel-core": "^6.0.20",
     "babel-eslint": "^4.1.3",
     "babel-loader": "^6.0.1",
