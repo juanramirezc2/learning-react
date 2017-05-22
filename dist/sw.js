@@ -38,8 +38,7 @@ self.addEventListener('push', event => {
         500
       ],
       icon: img,
-      badge: img,
-      image: 'https://www.allaboutbirds.org/guide/PHOTO/LARGE/annas_hummingbird_sim_1.jpg'
+      badge: img
     };
     const promiseChain = self.registration.showNotification(
       'TodoList notification',
@@ -47,8 +46,14 @@ self.addEventListener('push', event => {
     );
     event.waitUntil(promiseChain);
   } else {
-    console.log('this push evetn has not data');
+    console.log('this push event has not data');
   }
+});
+self.addEventListener('notificationclick', event => {
+  const clickedNotification = event.notification,
+    examplePage = '/go',
+    promiseChain = clients.openWindow(examplePage);
+  event.waitUntil(promiseChain);
 });
 
 let urlsFetched = [];
