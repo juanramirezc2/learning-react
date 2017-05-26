@@ -35,12 +35,15 @@
   "dependencies": {
     "babel-polyfill": "^6.23.0",
     "classnames": "^2.2.5",
-    "react": "^0.14.6",
+    "fbjs": "^0.8.12",
+    "material-ui": "^0.18.1",
+    "react": "^15.5.4",
     "react-dnd": "^2.2.3",
     "react-dnd-html5-backend": "^2.2.4",
     "react-dnd-touch-backend": "^0.3.5",
-    "react-dom": "^0.14.6",
+    "react-dom": "^15.5.4",
     "react-redux": "^5.0.2",
+    "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
     "workbox-sw": "^1.0.0"

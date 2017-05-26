@@ -4,14 +4,7 @@ import { addTask } from '../../actions';
 
 const mapDispatchToProps = dispatch => ({
   addCallback: (title, order) => {
-    let newTask = {
-      title,
-      taskType: 'task',
-      state: 'uncomplete',
-      notified: 'false',
-      order
-    };
-    dispatch(addTask(newTask));
+    console.log('hola mindo');
   }
 });
 const mapStateToProps = state => ({

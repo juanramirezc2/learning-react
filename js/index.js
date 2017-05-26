@@ -1,5 +1,6 @@
 import 'babel-polyfill';
 import React from 'react';
+console.log(React);
 import ReactDOM from 'react-dom';
 import App from './components/app';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -8,6 +9,11 @@ import { Provider } from 'react-redux';
 import reducer from './reducers';
 import { onerror, onsuccess, onupgradeneeded } from './db';
 import registerSw from './swRegistration';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+//import injectTapEventPlugin from 'react-tap-event-plugin';
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+//injectTapEventPlugin();
 // register a sw
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', registerSw);
@@ -25,7 +31,9 @@ request.onsuccess = onsuccess(store);
 request.onupgradeneeded = onupgradeneeded;
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <MuiThemeProvider>
+      <App />
+    </MuiThemeProvider>
   </Provider>,
   document.getElementById('container')
 );
