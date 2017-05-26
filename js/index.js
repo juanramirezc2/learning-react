@@ -10,10 +10,10 @@ import reducer from './reducers';
 import { onerror, onsuccess, onupgradeneeded } from './db';
 import registerSw from './swRegistration';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-//import injectTapEventPlugin from 'react-tap-event-plugin';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
-//injectTapEventPlugin();
+injectTapEventPlugin();
 // register a sw
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', registerSw);
