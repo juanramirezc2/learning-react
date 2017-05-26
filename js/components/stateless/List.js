@@ -1,29 +1,31 @@
-import React from "react";
-import Task from "./Task";
+import React from 'react';
+import Task from './Task';
+import { List, ListItem } from 'material-ui/List';
 
 const types = {
-  task: "todo"
+  task: 'todo'
 };
 
-var List = props => {
-  const { tasks, deleteTask, reorderTasks} = props;
+var TaskList = props => {
+  const { tasks, deleteTask, reorderTasks } = props;
   return (
-    <div>
+    <List>
       {tasks.map((task, i) => (
-        <Task
-          key={i}
-          task={task}
-          deleteTask={deleteTask}
-          reorderTasks={reorderTasks}
-        />
+        <ListItem key={i}>
+          <Task
+            task={task}
+            deleteTask={deleteTask}
+            reorderTasks={reorderTasks}
+          />
+        </ListItem>
       ))}
-    </div>
+    </List>
   );
 };
 //Default Props
-List.defaultProps = { tasks: [] };
+TaskList.defaultProps = { tasks: [] };
 
 //Props Types
-List.propTypes = { tasks: React.PropTypes.array };
+TaskList.propTypes = { tasks: React.PropTypes.array };
 
-export default List;
+export default TaskList;
