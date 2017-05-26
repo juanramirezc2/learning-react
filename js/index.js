@@ -1,6 +1,5 @@
 import 'babel-polyfill';
 import React from 'react';
-console.log(React);
 import ReactDOM from 'react-dom';
 import App from './components/app';
 import { createStore, applyMiddleware, compose } from 'redux';

@@ -6,13 +6,13 @@ import ProvidedHead from './containers/addAndSelectTask';
 import { default as TouchBackend } from 'react-dnd-touch-backend';
 import HTMLBackend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
-import RaisedButton from 'material-ui/RaisedButton';
+import BottomNavigationExampleSimple from './stateless/bottomNavigation';
 
 var App = () => (
   <div>
-    <RaisedButton label="Default" />
     <ProvidedHead />
     <ProvidedList />
+    <BottomNavigationExampleSimple />
   </div>
 );
 var appWrapped;
