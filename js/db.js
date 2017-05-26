@@ -29,7 +29,7 @@ function onerror(event) {
 function reorderTask(sourceInfo, targetInfo) {
   let transaction = db.transaction(['toDoList'], 'readwrite');
   let objectStore = transaction.objectStore('toDoList');
-  
+
   objectStore.get(sourceInfo.id).onsuccess = ({ target }) => {
     let sourceTask = target.result;
     sourceTask.order = targetInfo.order;
@@ -46,27 +46,26 @@ function reorderTask(sourceInfo, targetInfo) {
 }
 
 /* get all the task from indexedDB this method will be call everytime redux state needs an update */
-function getAllData(){
+function getAllData() {
   let transaction = db.transaction(['toDoList']);
   let objectStore = transaction.objectStore('toDoList');
   let orderIndex = objectStore.index('order');
-  let allData = []
-  return new Promise((resolve,reject)=>{
-    orderIndex.openCursor().onsuccess = ({target})=>{
-    let cursor = target.result
-    if(cursor){
-      allData.push(cursor.value)
-      cursor.continue();
-    }
-    else{
-      resolve(allData)
-    }
-  }
-  })
+  let allData = [];
+  return new Promise((resolve, reject) => {
+    orderIndex.openCursor().onsuccess = ({ target }) => {
+      let cursor = target.result;
+      if (cursor) {
+        allData.push(cursor.value);
+        cursor.continue();
+      } else {
+        resolve(allData);
+      }
+    };
+  });
 }
 
 async function getInitialState(store) {
-  let allData = await getAllData()
+  let allData = await getAllData();
   store.dispatch(setInitialState(allData));
 }
 
@@ -78,7 +77,10 @@ function onupgradeneeded(event) {
   } catch (e) {
     console.log(e);
   }
-  var objectStore = db.createObjectStore('toDoList', { keyPath: 'taskId' });
+  var objectStore = db.createObjectStore('toDoList', {
+    keyPath: 'taskId',
+    autoIncrement: true
+  });
 
   // define what data items the objectStore will contain
 

@@ -1,5 +1,5 @@
 importScripts('workbox.js');
-var cache_name = 'my-site-cache-v41';
+var cache_name = 'my-site-cache-v43';
 var urlsToCache = ['/', '/index.html', '/test.html', '/bundle.js'];
 
 self.addEventListener('install', function(event) {
@@ -54,7 +54,6 @@ self.addEventListener('notificationclick', event => {
   clickedNotification.close();
 
   const urlToOpen = new URL(examplePage, self.location.origin).href;
-
   const promiseChain = clients
     .matchAll({
       type: 'window',

@@ -70,7 +70,6 @@ async function refreshRedux(dispatch) {
 export function addTask(taskData) {
   return dispatch => {
     let newTask = {
-      taskId: Math.random(),
       ...taskData
     };
     insertTask(newTask).oncomplete = e => {

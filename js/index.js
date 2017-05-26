@@ -18,8 +18,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 let store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
-//Indexed Db Stuff
-var request = window.indexedDB.open('reduxStore', 17);
+//Indexed Db
+var request = window.indexedDB.open('reduxStore', 19);
 request.onerror = onerror;
 request.onsuccess = onsuccess(store);
 request.onupgradeneeded = onupgradeneeded;
