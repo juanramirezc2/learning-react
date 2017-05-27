@@ -1,8 +1,8 @@
 import React, { PropType } from 'react';
-import TextField from './TextField';
 import Button from './Button';
 import app from '../../../css/app.css';
 import classNames from 'classnames';
+import TextField from 'material-ui/TextField';
 
 class Head extends React.Component {
   constructor(props) {
@@ -10,11 +10,13 @@ class Head extends React.Component {
   }
   onSubmit(e) {
     e.preventDefault();
-    this.props.addCallback(this.taskName.value, this.props.order);
+    this.props.addCallback(this.taskName, this.props.order);
     this.form.reset();
   }
+  handleChange(event, newValue) {
+    this.taskName = newValue;
+  }
   render() {
-    console.log(this.props.order);
     return (
       <form
         onSubmit={this.onSubmit.bind(this)}
@@ -22,12 +24,12 @@ class Head extends React.Component {
         className={app.head}
       >
         <TextField
-          sth={app.head__textField}
-          refCallback={el => {
-            this.taskName = el;
-          }}
+          className={app.head__textField}
+          name="taskInput"
+          hintText="Full width"
+          fullWidth={true}
+          onChange={this.handleChange.bind(this)}
         />
-        <input type="submit" value="add" />
       </form>
     );
   }

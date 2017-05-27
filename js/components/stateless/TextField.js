@@ -1,7 +1,13 @@
-import React, { PropType } from "react";
+import React, { PropType } from 'react';
+import TextField from 'material-ui/TextField';
 
-const TextField = ({ refCallback, sth }) => (
-  <input className={sth} ref={refCallback} type="text" />
+const TextFieldTask = ({ refCallback, sth }) => (
+  <TextField
+    className={sth}
+    hintText="Full width"
+    fullWidth={true}
+    ref={refCallback}
+  />
 );
 
-export default TextField;
+export default TextFieldTask;

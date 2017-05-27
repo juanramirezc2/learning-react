@@ -9,17 +9,16 @@ const types = {
 var TaskList = props => {
   const { tasks, deleteTask, reorderTasks } = props;
   return (
-    <List>
+    <ul>
       {tasks.map((task, i) => (
-        <ListItem key={i}>
-          <Task
-            task={task}
-            deleteTask={deleteTask}
-            reorderTasks={reorderTasks}
-          />
-        </ListItem>
+        <Task
+          key={i}
+          task={task}
+          deleteTask={deleteTask}
+          reorderTasks={reorderTasks}
+        />
       ))}
-    </List>
+    </ul>
   );
 };
 //Default Props
