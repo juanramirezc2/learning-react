@@ -29,6 +29,7 @@ class Head extends React.Component {
           hintText="next task to tackle 💪🏼"
           fullWidth={true}
           onChange={this.handleChange.bind(this)}
+          underlineFocusStyle={{ border: '2px solid rgb(0,0,0)' }}
         />
       </form>
     );
