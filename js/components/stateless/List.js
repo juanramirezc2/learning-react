@@ -1,6 +1,7 @@
 import React from 'react';
 import Task from './Task';
 import { List, ListItem } from 'material-ui/List';
+import app from '../../../css/app.css';
 
 const types = {
   task: 'todo'
@@ -9,7 +10,7 @@ const types = {
 var TaskList = props => {
   const { tasks, deleteTask, reorderTasks } = props;
   return (
-    <ul>
+    <ul className={app.list}>
       {tasks.map((task, i) => (
         <Task
           key={i}

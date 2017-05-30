@@ -26,7 +26,7 @@ class Head extends React.Component {
         <TextField
           className={app.head__textField}
           name="taskInput"
-          hintText="Full width"
+          hintText="next task to tackle 💪🏼"
           fullWidth={true}
           onChange={this.handleChange.bind(this)}
         />

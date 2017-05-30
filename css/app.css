@@ -22,6 +22,9 @@
     border: dotted 1px black;
   }
 }
+.list{
+  padding: 0;
+}
 .head{
   background-color: gray;
   display: flex;
