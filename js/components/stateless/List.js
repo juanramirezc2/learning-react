@@ -7,21 +7,34 @@ const types = {
   task: 'todo'
 };
 
-var TaskList = props => {
-  const { tasks, deleteTask, reorderTasks } = props;
-  return (
-    <ul className={app.list}>
-      {tasks.map((task, i) => (
-        <Task
-          key={i}
-          task={task}
-          deleteTask={deleteTask}
-          reorderTasks={reorderTasks}
+class TaskList extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    const { tasks, deleteTask, reorderTasks } = props;
+    return (
+      <div>
+        <ul className={app.list}>
+          {tasks.map((task, i) => (
+            <Task
+              key={i}
+              task={task}
+              deleteTask={deleteTask}
+              reorderTasks={reorderTasks}
+            />
+          ))}
+        </ul>
+        <Snackbar
+          open={() => {}}
+          message="test"
+          autoHideDuration={4000}
+          onRequestClose={() => {}}
         />
-      ))}
-    </ul>
-  );
-};
+      </div>
+    );
+  }
+}
 //Default Props
 TaskList.defaultProps = { tasks: [] };
 
