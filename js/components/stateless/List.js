@@ -2,6 +2,7 @@ import React from 'react';
 import Task from './Task';
 import { List, ListItem } from 'material-ui/List';
 import app from '../../../css/app.css';
+import Snackbar from 'material-ui/Snackbar';
 
 const types = {
   task: 'todo'
@@ -10,9 +11,22 @@ const types = {
 class TaskList extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      open: false
+    };
+  }
+  handleCloseSnackbar() {
+    this.setState({
+      open: false
+    });
+  }
+  handleOpenSnackbar() {
+    this.setState({
+      open: true
+    });
   }
   render() {
-    const { tasks, deleteTask, reorderTasks } = props;
+    const { tasks, deleteTask, reorderTasks } = this.props;
     return (
       <div>
         <ul className={app.list}>
@@ -25,11 +39,14 @@ class TaskList extends React.Component {
             />
           ))}
         </ul>
+        <div onClick={this.handleOpenSnackbar.bind(this)}>
+          test handle snackbar
+        </div>
         <Snackbar
-          open={() => {}}
-          message="test"
+          open={this.state.open}
+          message="task deleted"
           autoHideDuration={4000}
-          onRequestClose={() => {}}
+          onRequestClose={this.handleCloseSnackbar.bind(this)}
         />
       </div>
     );
