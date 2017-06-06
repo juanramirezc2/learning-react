@@ -78,27 +78,33 @@ const task = props => {
     connectDropTarget,
     itemOver
   } = props;
+  const DragAndDropZone = connectDragSource(
+    connectDropTarget(
+      <div>
+        🔄drag and drop
+      </div>
+    )
+  );
 
   /* task data */
   const { taskId, title, type, state } = props.task;
 
-  return connectDragSource(
-    connectDropTarget(
-      <li
-        href="#"
-        className={classNames(app.task, {
-          [app.task_isDraging]: isDragging
-        })}
-        onClick={deleteTask(taskId)}
-      >
-        <div className={app.task__type}>
-          {TaskType[type]}
-        </div>
-        <div className={app.task__title}>
-          {title}
-        </div>
-      </li>
-    )
+  return (
+    <li
+      href="#"
+      className={classNames(app.task, {
+        [app.task_isDraging]: isDragging
+      })}
+      onClick={deleteTask(taskId)}
+    >
+      <DragAndDropZone />
+      <div className={app.task__type}>
+        {TaskType[type]}
+      </div>
+      <div className={app.task__title}>
+        {title}
+      </div>
+    </li>
   );
 };
 
