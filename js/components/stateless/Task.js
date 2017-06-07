@@ -68,16 +68,17 @@ const TaskType = {
   task: '➖'
 };
 
-const task = props => {
+const Task = props => {
   /* provided functions */
   const {
     deleteTask,
     connectDragSource,
+    connectDropTarget,
     isDragging,
     reorderTasks,
-    connectDropTarget,
     itemOver
   } = props;
+
   const DragAndDropZone = connectDragSource(
     connectDropTarget(
       <div>
@@ -85,7 +86,6 @@ const task = props => {
       </div>
     )
   );
-
   /* task data */
   const { taskId, title, type, state } = props.task;
 
@@ -97,7 +97,7 @@ const task = props => {
       })}
       onClick={deleteTask(taskId)}
     >
-      <DragAndDropZone />
+      {DragAndDropZone}
       <div className={app.task__type}>
         {TaskType[type]}
       </div>
@@ -109,5 +109,5 @@ const task = props => {
 };
 
 export default DropTarget(Types.task, dropSpec, collectDrop)(
-  DragSource(Types.task, dragSpec, collectDrag)(task)
+  DragSource(Types.task, dragSpec, collectDrag)(Task)
 );
