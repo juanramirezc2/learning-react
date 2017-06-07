@@ -83,7 +83,7 @@ const Task = props => {
   const DragAndDropZone = connectDragSource(
     connectDropTarget(
       <div>
-        🔄drag and drop
+        🔄
       </div>
     )
   );
