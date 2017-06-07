@@ -7,7 +7,6 @@
   }
 }
 .task {
-  border: solid 1px black;
   display: flex;
   text-decoration: none;
   min-height: 50px; 

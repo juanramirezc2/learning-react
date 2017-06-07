@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { DragSource } from 'react-dnd';
 import { DropTarget } from 'react-dnd';
 import { findDOMNode } from 'react-dom';
+import Paper from 'material-ui/Paper';
 
 /* drag functions */
 const Types = {
@@ -86,6 +87,14 @@ const Task = props => {
       </div>
     )
   );
+  /* paper style */
+  const style = {
+    height: 'auto',
+    width: '100%',
+    margin: '0 2 7 2',
+    padding: '5 10',
+    display: 'block'
+  };
   /* task data */
   const { taskId, title, type, state } = props.task;
 
@@ -97,13 +106,15 @@ const Task = props => {
       })}
       onClick={deleteTask(taskId)}
     >
-      {DragAndDropZone}
-      <div className={app.task__type}>
-        {TaskType[type]}
-      </div>
-      <div className={app.task__title}>
-        {title}
-      </div>
+      <Paper style={style} zDepth={2}>
+        {DragAndDropZone}
+        <div className={app.task__type}>
+          {TaskType[type]}
+        </div>
+        <div className={app.task__title}>
+          {title}
+        </div>
+      </Paper>
     </li>
   );
 };
