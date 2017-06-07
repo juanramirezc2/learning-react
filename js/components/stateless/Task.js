@@ -82,7 +82,7 @@ const Task = props => {
 
   const DragAndDropZone = connectDragSource(
     connectDropTarget(
-      <div>
+      <div className={app.task__dragZone}>
         🔄
       </div>
     )
@@ -93,10 +93,10 @@ const Task = props => {
     width: '100%',
     margin: '0 2 7 2',
     padding: '5 10',
-    display: 'block'
+    display: 'flex'
   };
   /* task data */
-  const { taskId, title, type, state } = props.task;
+  const { taskId, title, taskType, state } = props.task;
 
   return (
     <li
@@ -109,7 +109,7 @@ const Task = props => {
       <Paper style={style} zDepth={2}>
         {DragAndDropZone}
         <div className={app.task__type}>
-          {TaskType[type]}
+          {TaskType[taskType]}
         </div>
         <div className={app.task__title}>
           {title}

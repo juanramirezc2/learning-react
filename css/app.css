@@ -11,7 +11,10 @@
   text-decoration: none;
   min-height: 50px; 
   &__type {
-    margin: 0 10px;
+    margin: 0 5px;
+  }
+  &__dragZone{
+    font-size: 25px;
   }
   &__title {
 
