@@ -81,11 +81,9 @@ const Task = props => {
   } = props;
 
   const DragAndDropZone = connectDragSource(
-    connectDropTarget(
-      <div className={app.task__dragZone}>
-        🔄
-      </div>
-    )
+    <div className={app.task__dragZone}>
+      ↕️
+    </div>
   );
   /* paper style */
   const style = {
@@ -98,7 +96,7 @@ const Task = props => {
   /* task data */
   const { taskId, title, taskType, state } = props.task;
 
-  return (
+  return connectDropTarget(
     <li
       href="#"
       className={classNames(app.task, {
