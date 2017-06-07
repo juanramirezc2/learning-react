@@ -1,5 +1,5 @@
 importScripts('workbox.js');
-var cache_name = 'my-site-cache-v46';
+var cache_name = 'my-site-cache-v47';
 var urlsToCache = ['/', '/index.html', '/test.html', '/bundle.js'];
 
 self.addEventListener('install', function(event) {
