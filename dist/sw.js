@@ -1,9 +1,9 @@
-importScripts('workbox.js');
-var cache_name = 'my-site-cache-v48';
-var urlsToCache = ['/', '/index.html', '/test.html', '/bundle.js'];
+importScripts("workbox.js");
+var cache_name = "my-site-cache-v49";
+var urlsToCache = ["/", "/index.html", "/test.html", "/bundle.js"];
 
-self.addEventListener('install', function(event) {
-  console.log('install event');
+self.addEventListener("install", function(event) {
+  console.log("install event");
   // Perform install steps
   event.waitUntil(
     caches.open(cache_name).then(function(cache) {
@@ -12,9 +12,9 @@ self.addEventListener('install', function(event) {
   );
 });
 
-self.addEventListener('push', event => {
+self.addEventListener("push", event => {
   if (event.data) {
-    var img = '/images/icons/icon-128x128.png';
+    var img = "/images/icons/icon-128x128.png";
     // star wars vibration pattern
     const options = {
       body: event.data.text(),
@@ -41,22 +41,22 @@ self.addEventListener('push', event => {
       badge: img
     };
     const promiseChain = self.registration.showNotification(
-      'TodoList notification',
+      "TodoList notification",
       options
     );
     event.waitUntil(promiseChain);
   } else {
-    console.log('this push event has not data');
+    console.log("this push event has not data");
   }
 });
-self.addEventListener('notificationclick', event => {
-  const clickedNotification = event.notification, examplePage = '/';
+self.addEventListener("notificationclick", event => {
+  const clickedNotification = event.notification, examplePage = "/";
   clickedNotification.close();
 
   const urlToOpen = new URL(examplePage, self.location.origin).href;
   const promiseChain = clients
     .matchAll({
-      type: 'window',
+      type: "window",
       includeUncontrolled: true
     })
     .then(windowClients => {
@@ -80,7 +80,7 @@ self.addEventListener('notificationclick', event => {
 });
 
 let urlsFetched = [];
-self.addEventListener('fetch', function(event) {
+self.addEventListener("fetch", function(event) {
   urlsFetched.push(event.request);
   event.respondWith(
     caches.match(event.request).then(function(response) {
@@ -93,14 +93,14 @@ self.addEventListener('fetch', function(event) {
   );
 });
 
-self.addEventListener('activate', function(event) {
-  console.log('activate triggered', 'SW starts up');
+self.addEventListener("activate", function(event) {
+  console.log("activate triggered", "SW starts up");
   event.waitUntil(
     caches.keys().then(keyList => {
       Promise.all(
         keyList.map(key => {
           if (key !== cache_name) {
-            console.log('deleting old cache');
+            console.log("deleting old cache");
             return caches.delete(key);
           }
         })
