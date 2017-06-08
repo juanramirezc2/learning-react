@@ -16,7 +16,6 @@ class TaskList extends React.Component {
       snackbarMsn: ""
     };
   }
-  componentW;
   handleCloseSnackbar() {
     this.setState({
       open: false
@@ -32,8 +31,6 @@ class TaskList extends React.Component {
     const { tasks: actualTasks } = this.props;
     if (actualTasks.length > tasks.length) {
       this.handleOpenSnackbar("task deleted");
-    } else {
-      this.handleOpenSnackbar("something went wrong 😟");
     }
   }
   render() {
