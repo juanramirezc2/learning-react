@@ -1,29 +1,40 @@
-import React from 'react';
-import Task from './Task';
-import { List, ListItem } from 'material-ui/List';
-import app from '../../../css/app.css';
-import Snackbar from 'material-ui/Snackbar';
+import React from "react";
+import Task from "./Task";
+import { List, ListItem } from "material-ui/List";
+import app from "../../../css/app.css";
+import Snackbar from "material-ui/Snackbar";
 
 const types = {
-  task: 'todo'
+  task: "todo"
 };
 
 class TaskList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      open: false,
+      snackbarMsn: ""
     };
   }
+  componentW;
   handleCloseSnackbar() {
     this.setState({
       open: false
     });
   }
-  handleOpenSnackbar() {
+  handleOpenSnackbar(msn) {
     this.setState({
-      open: true
+      open: true,
+      snackbarMsn: msn
     });
+  }
+  componentWillUpdate({ tasks }) {
+    const { tasks: actualTasks } = this.props;
+    if (actualTasks.length > tasks.length) {
+      this.handleOpenSnackbar("task deleted");
+    } else {
+      this.handleOpenSnackbar("something went wrong 😟");
+    }
   }
   render() {
     const { tasks, deleteTask, reorderTasks } = this.props;
@@ -39,12 +50,9 @@ class TaskList extends React.Component {
             />
           ))}
         </ul>
-        <div onClick={this.handleOpenSnackbar.bind(this)}>
-          test handle snackbar
-        </div>
         <Snackbar
           open={this.state.open}
-          message="task deleted"
+          message={this.state.snackbarMsn}
           autoHideDuration={4000}
           onRequestClose={this.handleCloseSnackbar.bind(this)}
         />
